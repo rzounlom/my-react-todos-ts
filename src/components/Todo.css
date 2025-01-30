@@ -1,0 +1,21 @@
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-title-completed {
+  text-decoration: line-through;
+  color: lightgrey;
+}
+
+.btn-group {
+  width: 210px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  width: 100%;
+}
