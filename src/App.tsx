@@ -1,22 +1,32 @@
 import "./App.css";
 
-import { Button } from "react-bootstrap";
+import { Alert, Button, Form } from "react-bootstrap";
+
 import { TodoItem } from "./types";
 import TodoList from "./components/TodoList";
 import { defaultTodos } from "./data";
 import { useState } from "react";
 
 function App() {
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [newTodo, setNewTodo] = useState<string>("");
+
   const [todos, setTodos] = useState<TodoItem[]>(defaultTodos);
-  console.log({ defaultTodos });
 
   const addTodo = () => {
-    const newTodo = {
+    if (!newTodo) {
+      setShowAlert(true);
+      return;
+    }
+
+    setShowAlert(false);
+    const todo: TodoItem = {
       id: todos.length + 1,
-      title: "New Todo",
+      title: newTodo,
       completed: false,
     };
-    setTodos([...todos, newTodo]);
+    setTodos([...todos, todo]);
+    setNewTodo("");
   };
 
   const toggleComplete = (id: number) => {
@@ -37,7 +47,27 @@ function App() {
 
   return (
     <div className="container">
+      {showAlert && (
+        <Alert
+          variant="danger"
+          style={{ marginTop: "15px" }}
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          {/* <Alert.Heading>Oh snap! You got an error!</Alert.Heading> */}
+          <p>
+            Please enter a task before adding it to the list! The task cannot be
+            empty.
+          </p>
+        </Alert>
+      )}
       <h1>Todo App Example</h1>
+      <Form.Control
+        type="text"
+        value={newTodo}
+        onChange={(e) => setNewTodo(e.target.value)}
+        placeholder="Enter a task"
+      />
       <Button className="mt-2 mb-2" onClick={addTodo}>
         Add Todo
       </Button>

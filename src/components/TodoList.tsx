@@ -17,15 +17,23 @@ export default function TodoList({
 
   return (
     <ListGroup>
-      {todos.map((todo: TodoItem) => (
-        <ListGroup.Item key={todo.id}>
-          <Todo
-            todo={todo}
-            toggleComplete={toggleComplete}
-            deleteTodo={deleteTodo}
-          />
-        </ListGroup.Item>
-      ))}
+      {todos?.length > 0 ? (
+        todos?.map((todo: TodoItem) => (
+          <ListGroup.Item key={todo.id}>
+            <Todo
+              todo={todo}
+              toggleComplete={toggleComplete}
+              deleteTodo={deleteTodo}
+            />
+          </ListGroup.Item>
+        ))
+      ) : (
+        <h2
+          style={{ textAlign: "center", marginTop: "50px", color: "lightgray" }}
+        >
+          All Tasks Done!
+        </h2>
+      )}
     </ListGroup>
   );
 }
