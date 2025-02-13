@@ -4,8 +4,8 @@ import { TodoItem } from "../types";
 
 type TodoListProps = {
   todos: TodoItem[];
-  toggleComplete: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleComplete: (id: string) => void;
+  deleteTodo: (id: string) => void;
 };
 
 export default function TodoList({
@@ -13,7 +13,7 @@ export default function TodoList({
   toggleComplete,
   deleteTodo,
 }: TodoListProps) {
-  console.log({ todos });
+  // console.log({ todos });
 
   return (
     <ListGroup>

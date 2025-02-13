@@ -1,5 +1,7 @@
 export type TodoItem = {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
 };
+
+export type NewTodoItem = Omit<TodoItem, "id">;

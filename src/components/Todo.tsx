@@ -5,8 +5,8 @@ import type { TodoItem } from "../types";
 
 type TodoProps = {
   todo: TodoItem;
-  toggleComplete: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleComplete: (id: string) => void;
+  deleteTodo: (id: string) => void;
 };
 
 export default function Todo({ todo, toggleComplete, deleteTodo }: TodoProps) {
